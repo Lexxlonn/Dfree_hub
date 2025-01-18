@@ -45,7 +45,6 @@ class _OTPpageState extends State<OTPpage> {
     }
   }
 
-
   void _handleResendCode() {
     // Implement resend code logic here
     ScaffoldMessenger.of(context).showSnackBar(
@@ -59,7 +58,7 @@ class _OTPpageState extends State<OTPpage> {
   void _handleSubmit() {
     // Combine the OTP values
     final otp = _controllers.map((controller) => controller.text).join();
-    
+
     // Validate OTP length
     if (otp.length != 4) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -73,15 +72,15 @@ class _OTPpageState extends State<OTPpage> {
 
     // Here you would typically verify the OTP with your backend
     print('Submitted OTP: $otp');
-    
-    // Navigate to next screen or show success message
+
+    // Navigate to the registration page
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
-        content: Text('OTP verified successfully!'),
+        content: Text('Redirecting to registration page...'),
         backgroundColor: Colors.green,
       ),
     );
-    Navigator.pushNamed(context, '/bottomnav');
+    Navigator.pushNamed(context, '/register');
   }
 
   @override

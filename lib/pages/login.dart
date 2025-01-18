@@ -177,21 +177,6 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   const SizedBox(height: 20),
-                  // Registration Link
-                  Center(
-                    child: TextButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/register');
-                      },
-                      child: const Text(
-                        'New here? Register now',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                        ),
-                      ),
-                    ),
-                  ),
                 ],
               ),
             ),

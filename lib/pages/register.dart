@@ -201,7 +201,8 @@ class _RegisterPageState extends State<RegisterPage> {
               ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
-                    // Process data
+                    // Redirect to education page
+                    Navigator.pushNamed(context, '/bottomnav');
                   }
                 },
                 child: const Text('Submit'),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+
 class Rehab extends StatefulWidget {
   const Rehab({super.key});
 
@@ -32,8 +33,10 @@ class _RehabState extends State<Rehab> {
           },
         ),
       )
-      ..loadRequest(Uri.parse('https://www.google.com/maps/search/rehabilitation+center/'));
+      ..loadRequest(Uri.parse(
+          'https://www.google.com/maps/search/rehabilitation+center/'));
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
