@@ -29,29 +29,13 @@ class _CrimeState extends State<Crime> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Report Issue', style: TextStyle(color: Colors.black)),
-        backgroundColor: Colors.white,
-        iconTheme: IconThemeData(color: Colors.black),
-        elevation: 0,
-      ),
+      
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Center(
-                child: Column(
-                  children: [
-                    Image.asset(
-                      'assets/logo.png', // Replace with your logo path
-                      height: 80,
-                    ),
-                    SizedBox(height: 20),
-                  ],
-                ),
-              ),
               Text(
                 'Report Issue',
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
