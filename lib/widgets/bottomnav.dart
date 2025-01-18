@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:dfree_hub/pages/education.dart';
 import 'package:dfree_hub/pages/rehab.dart';
 import 'package:dfree_hub/pages/crime.dart';
-import 'package:dfree_hub/pages/expert.dart';
-import 'package:dfree_hub/pages/event.dart';
 import 'package:dfree_hub/pages/community.dart';
+import 'package:dfree_hub/pages/profile.dart';
 
 class BottomNav extends StatefulWidget {
   const BottomNav({super.key});
@@ -20,8 +19,7 @@ class _BottomNavState extends State<BottomNav> {
     Rehab(),
     Education(),
     Community(),
-    Event(),
-    Expert(),
+    Profile()
   ];
 
   @override
@@ -34,7 +32,7 @@ class _BottomNavState extends State<BottomNav> {
             child: Container(
               margin: EdgeInsets.only(right: 0, top: 20, bottom: 5),
               width: 110,
-              height: 85, // Increased height
+              height: 85,
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage("lib/assets/icon.png"),
@@ -44,14 +42,22 @@ class _BottomNavState extends State<BottomNav> {
             ),
           ),
           actions: [
-            Container(
-              margin: EdgeInsets.only(right: 20.0), // Added margin
-              width: 30,
-              height: 30,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage("lib/assets/User Heart.png"),
-                  fit: BoxFit.contain,
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Profile()),
+                );
+              },
+              child: Container(
+                margin: EdgeInsets.only(right: 20.0),
+                width: 30,
+                height: 30,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage("lib/assets/User Heart.png"),
+                    fit: BoxFit.contain,
+                  ),
                 ),
               ),
             ),
@@ -77,24 +83,23 @@ class _BottomNavState extends State<BottomNav> {
             });
           },
           currentIndex: _selectedIndex,
-          items: [
-            const BottomNavigationBarItem(
+          items: const [
+            BottomNavigationBarItem(
               icon: Icon(Icons.warning, color: Colors.white),
               label: 'Crime',
             ),
-            const BottomNavigationBarItem(
+            BottomNavigationBarItem(
               icon: Icon(Icons.local_hospital, color: Colors.white),
               label: 'Rehab',
             ),
-            const BottomNavigationBarItem(
+            BottomNavigationBarItem(
               icon: Icon(Icons.menu_book, color: Colors.white),
               label: 'Education',
             ),
-            const BottomNavigationBarItem(
+            BottomNavigationBarItem(
               icon: Icon(Icons.people_alt, color: Colors.white),
               label: 'Community',
             ),
-            
           ],
         ),
       ),
