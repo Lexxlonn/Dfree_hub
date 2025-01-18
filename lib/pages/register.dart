@@ -63,13 +63,21 @@ class _RegisterPageState extends State<RegisterPage> {
           'community_tag': _selectedCommunity,
           'proof': _proofFile?.name,
         })
-      ;
+;
+    if (response == null) {
+      // Handle null response
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Error: Response is null')),
+      );
+            Navigator.pushNamed(context, '/bottomnav');
 
-    if (response.error != null) {
+    } else if (response.error != null) {
       // Handle error
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Error: ${response.error!.message}')),
       );
+            Navigator.pushNamed(context, '/bottomnav');
+
     } else if (response.data == null) {
       // Handle unknown error
       ScaffoldMessenger.of(context).showSnackBar(
