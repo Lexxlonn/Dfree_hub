@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:file_picker/file_picker.dart';
+import 'package:intl/intl.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -16,6 +19,8 @@ class _RegisterPageState extends State<RegisterPage> {
   final _dobController = TextEditingController();
   final _addressController = TextEditingController();
   String? _selectedCommunity;
+  PlatformFile? _proofFile;
+  String? _phoneNumber = '9526652071'; // Default value for phone number
 
   @override
   void dispose() {
@@ -26,6 +31,82 @@ class _RegisterPageState extends State<RegisterPage> {
     _dobController.dispose();
     _addressController.dispose();
     super.dispose();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final phoneNumber = ModalRoute.of(context)?.settings.arguments as String?;
+    if (phoneNumber != null) {
+      _phoneNumber = phoneNumber;
+    }
+  }
+
+  Future<void> _registerUser() async {
+    if (_phoneNumber == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Phone number is required')),
+      );
+      return;
+    }
+
+    final response = await Supabase.instance.client
+        .from('user')
+        .insert({
+          'fname': _firstNameController.text,
+          'lname': _lastNameController.text,
+          'age': int.parse(_ageController.text),
+          'phone': int.parse(_phoneNumber!),
+          'email_id': _emailController.text,
+          'dob': _dobController.text,
+          'address': _addressController.text,
+          'community_tag': _selectedCommunity,
+          'proof': _proofFile?.name,
+        })
+      ;
+
+    if (response.error != null) {
+      // Handle error
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Error: ${response.error!.message}')),
+      );
+    } else if (response.data == null) {
+      // Handle unknown error
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Unknown error occurred')),
+      );
+            Navigator.pushNamed(context, '/bottomnav');
+
+    } else {
+      // Handle success
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('User registered successfully!')),
+      );
+      Navigator.pushNamed(context, '/bottomnav');
+    }
+  }
+
+  Future<void> _pickProofFile() async {
+    final result = await FilePicker.platform.pickFiles();
+    if (result != null) {
+      setState(() {
+        _proofFile = result.files.first;
+      });
+    }
+  }
+
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(1900),
+      lastDate: DateTime.now(),
+    );
+    if (picked != null && picked != DateTime.now()) {
+      setState(() {
+        _dobController.text = DateFormat('yyyy-MM-dd').format(picked);
+      });
+    }
   }
 
   @override
@@ -119,8 +200,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   if (value == null || value.isEmpty) {
                     return 'Please enter your email address';
                   }
-                  if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
-                      .hasMatch(value)) {
+                  if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value)) {
                     return 'Please enter a valid email address';
                   }
                   return null;
@@ -137,7 +217,8 @@ class _RegisterPageState extends State<RegisterPage> {
                     borderRadius: BorderRadius.all(Radius.circular(8.0)),
                   ),
                 ),
-                keyboardType: TextInputType.datetime,
+                readOnly: true,
+                onTap: () => _selectDate(context),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter your date of birth';
@@ -175,9 +256,9 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 value: _selectedCommunity,
                 items: <String>[
-                  'General',
-                  'OBC',
-                  'SC/ST',
+                  'Doctor',
+                  'Volunteer',
+                  'Counsellor',
                   'Others',
                 ].map((String value) {
                   return DropdownMenuItem<String>(
@@ -197,15 +278,28 @@ class _RegisterPageState extends State<RegisterPage> {
                   return null;
                 },
               ),
+              const SizedBox(height: 16),
+              if (_selectedCommunity != null && _selectedCommunity != 'Others')
+                Column(
+                  children: [
+                    ElevatedButton(
+                      onPressed: _pickProofFile,
+                      child: Text(_proofFile == null ? 'Upload Proof' : 'Proof Uploaded'),
+                    ),
+                    if (_proofFile != null)
+                      Text(
+                        'Selected file: ${_proofFile!.name}',
+                        style: TextStyle(color: Colors.green),
+                      ),
+                  ],
+                ),
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
-                    // Redirect to education page
-                    Navigator.pushNamed(context, '/bottomnav');
+                    _registerUser();
                   }
                 },
-                child: const Text('Submit'),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF122C50),
                   foregroundColor: Colors.white,
@@ -214,6 +308,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     borderRadius: BorderRadius.circular(8),
                   ),
                 ),
+                child: const Text('Submit'),
               ),
             ],
           ),

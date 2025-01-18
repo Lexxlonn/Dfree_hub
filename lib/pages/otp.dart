@@ -87,25 +87,6 @@ class _OTPpageState extends State<OTPpage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        leading: IconButton(
-          icon: Container(
-            padding: const EdgeInsets.all(8),
-            decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-              color: Color(0xFFF47373),
-            ),
-            child: const Icon(
-              Icons.arrow_back_ios_new,
-              color: Colors.white,
-              size: 20,
-            ),
-          ),
-          onPressed: () => Navigator.pop(context),
-        ),
-      ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
