@@ -6,6 +6,7 @@ import 'package:dfree_hub/pages/setting.dart';
 import 'package:dfree_hub/pages/expert.dart';
 import 'package:dfree_hub/pages/profile.dart';
 import 'package:dfree_hub/pages/event.dart';
+import 'package:dfree_hub/pages/register.dart';
 import 'package:dfree_hub/pages/otp.dart';
 import 'package:dfree_hub/widgets/bottomnav.dart';
 import 'package:dfree_hub/pages/profile_edit.dart';
@@ -42,6 +43,7 @@ class MainApp extends StatelessWidget {
         '/profile_edit': (context) => ProfileEdit(),
         '/otp': (context) => OTPpage(),
         '/bottomnav': (context) => BottomNav(),
+        '/register': (context) => RegisterPage(),
       },
     );
   }
