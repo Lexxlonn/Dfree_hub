@@ -7,6 +7,7 @@ import 'package:dfree_hub/pages/expert.dart';
 import 'package:dfree_hub/pages/profile.dart';
 import 'package:dfree_hub/pages/event.dart';
 import 'package:dfree_hub/pages/otp.dart';
+import 'package:dfree_hub/widgets/bottomnav.dart';
 import 'package:dfree_hub/pages/profile_edit.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -40,6 +41,7 @@ class MainApp extends StatelessWidget {
         '/experts': (context) => Expert(),
         '/profile_edit': (context) => ProfileEdit(),
         '/otp': (context) => OTPpage(),
+        '/bottomnav': (context) => BottomNav(),
       },
     );
   }
