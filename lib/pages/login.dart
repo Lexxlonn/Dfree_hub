@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-
 class LoginPage extends StatelessWidget {
-   LoginPage({super.key});
+  LoginPage({super.key});
 
-final supabase = Supabase.instance.client;
-
+  final supabase = Supabase.instance.client;
 
   @override
   Widget build(BuildContext context) {
