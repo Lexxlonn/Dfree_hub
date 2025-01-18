@@ -30,10 +30,10 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LoginPage(),
+      home: BottomNav(),
       routes: <String, WidgetBuilder>{
         '/login': (context) => LoginPage(),
-        '/profile': (context) => ProfileEdit(),
+        '/profile': (context) => Profile(),
         '/settings': (context) => Setting(),
         '/education': (context) => Education(),
         '/rehab': (context) => Rehab(),
