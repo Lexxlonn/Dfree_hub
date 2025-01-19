@@ -33,7 +33,7 @@ class MainApp extends StatelessWidget {
       home: LoginPage(),
       routes: <String, WidgetBuilder>{
         '/login': (context) => LoginPage(),
-        '/profile': (context) => ProfileEdit(),
+        '/profile': (context) => Profile(),
         '/settings': (context) => Setting(),
         '/education': (context) => Education(),
         '/rehab': (context) => Rehab(),
