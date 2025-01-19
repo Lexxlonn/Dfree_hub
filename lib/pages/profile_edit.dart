@@ -25,7 +25,7 @@ class _ProfileEditState extends State<ProfileEdit> {
                   Container(
                     padding: EdgeInsets.all(16),
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: Color(0xFFF3D7D6),
                       borderRadius: BorderRadius.circular(12),
                       boxShadow: [
                         BoxShadow(
@@ -47,23 +47,9 @@ class _ProfileEditState extends State<ProfileEdit> {
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
-                            Row(
-                              children: [
-                                IconButton(
-                                  icon: Icon(Icons.close),
-                                  onPressed: () => Navigator.pop(context),
-                                ),
-                                SizedBox(width: 8),
-                                Container(
-                                  width: 32,
-                                  height: 32,
-                                  decoration: BoxDecoration(
-                                    color: Colors.grey[200],
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: Icon(Icons.settings, size: 20),
-                                ),
-                              ],
+                            IconButton(
+                              icon: Icon(Icons.close),
+                              onPressed: () => Navigator.pop(context),
                             ),
                           ],
                         ),

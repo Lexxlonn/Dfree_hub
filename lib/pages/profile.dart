@@ -1,4 +1,5 @@
 import 'package:dfree_hub/pages/profile_edit.dart';
+import 'package:dfree_hub/pages/setting.dart'; // Import the Settings page
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -14,26 +15,40 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF3D7D6),
+      appBar: AppBar(
+        backgroundColor: const Color(0xFFFF6F6F),
+        title: const Text(
+          'Profile',
+          style: TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+        centerTitle: true,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.settings, color: Colors.white),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const Setting()),
+              );
+            },
+          ),
+        ],
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
           key: _formKey,
           child: ListView(
             children: <Widget>[
-              const SizedBox(height: 60),
-              const Text(
-                'Profile',
-                style: TextStyle(
-                  fontSize: 32,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF122C50),
-                ),
-                textAlign: TextAlign.center,
-              ),
+              const SizedBox(height: 24),
               Center(
                 child: Column(
                   children: [
-                    SizedBox(height: 24),
+                    const SizedBox(height: 24),
                     Stack(
                       children: [
                         CircleAvatar(
@@ -50,18 +65,18 @@ class _ProfileState extends State<Profile> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => ProfileEdit(),
+                                  builder: (context) => const ProfileEdit(),
                                 ),
                               );
                             },
                             child: Container(
-                              width: 24, // Adjust size as needed
+                              width: 24,
                               height: 24,
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 shape: BoxShape.circle,
                               ),
                               child: Image.asset(
-                                'lib/assets/Edit.png', // Path to the edit icon
+                                'lib/assets/Edit.png',
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -72,7 +87,7 @@ class _ProfileState extends State<Profile> {
                   ],
                 ),
               ),
-              const SizedBox(height: 60),
+              const SizedBox(height: 32),
               _buildFormField('Name', _nameController),
               _buildFormField('Email Address', _emailController),
               _buildFormField('Phone', _phoneController),
@@ -108,7 +123,7 @@ class _ProfileState extends State<Profile> {
         .single();
 
     setState(() {
-      _nameController.text = response['fname'] + ' ' + response['lname'];
+      _nameController.text = '${response['fname']} ${response['lname']}';
       _emailController.text = response['email_id'];
       _phoneController.text = response['phone'].toString();
       _ageController.text = response['age'].toString();
@@ -124,7 +139,7 @@ Widget _buildFormField(String label, TextEditingController controller) {
     children: [
       Text(
         label,
-        style: TextStyle(
+        style: const TextStyle(
           fontSize: 16,
           fontWeight: FontWeight.bold,
           color: Color(0xFF122C50),

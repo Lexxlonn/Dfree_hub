@@ -20,7 +20,6 @@ class _BottomNavState extends State<BottomNav> {
     Education(),
     Community(),
   ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
