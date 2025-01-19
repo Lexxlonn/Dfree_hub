@@ -20,48 +20,49 @@ class _BottomNavState extends State<BottomNav> {
     Education(),
     Community(),
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(65.0),
-        child: AppBar(
-          title: Center(
-            child: Container(
-              margin: EdgeInsets.only(right: 0, top: 20, bottom: 5, left: 50),
-              width: 110,
-              height: 85,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage("lib/assets/icon.png"),
-                  fit: BoxFit.contain,
-                ),
-              ),
-            ),
-          ),
-          actions: [
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Profile()),
-                );
-              },
-              child: Container(
-                margin: EdgeInsets.only(right: 20.0),
-                width: 30,
-                height: 30,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage("lib/assets/User Heart.png"),
-                    fit: BoxFit.contain,
+      appBar: _selectedIndex == 3
+          ? null
+          : AppBar(
+              title: Center(
+                child: Container(
+                  margin:
+                      EdgeInsets.only(right: 16, top: 20, bottom: 5, left: 10),
+                  width: 110,
+                  height: 85,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage("lib/assets/icon.png"),
+                      fit: BoxFit.contain,
+                    ),
                   ),
                 ),
               ),
+              actions: [
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Profile()),
+                    );
+                  },
+                  child: Container(
+                    margin: EdgeInsets.only(right: 20.0),
+                    width: 30,
+                    height: 30,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage("lib/assets/User Heart.png"),
+                        fit: BoxFit.contain,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
-      ),
       body: IndexedStack(
         index: _selectedIndex,
         children: _widgetOptions,

@@ -1,6 +1,6 @@
-import 'package:dfree_hub/pages/event.dart';
+import 'package:dfree_hub/pages/event.dart' as event_page;
 import 'package:flutter/material.dart';
-import 'expert.dart'; // Import the expert.dart file
+import 'package:dfree_hub/pages/expert.dart' as expert_page; // Import the expert.dart file
 
 class Community extends StatelessWidget {
   const Community({super.key});
@@ -121,13 +121,13 @@ class Community extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => Event()),
+                                    builder: (context) => event_page.Event()),
                               );
                             } else if (index == 2) {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => Expert()),
+                                    builder: (context) => expert_page.Expert()),
                               );
                             }
                           },
@@ -170,21 +170,6 @@ class Community extends StatelessWidget {
                         );
                       }),
                     ),
-                    if (selectedIndex == 0)
-                      Container(
-                        padding: EdgeInsets.all(16.0),
-                        child: Text('News Content'),
-                      ),
-                    if (selectedIndex == 1)
-                      Container(
-                        padding: EdgeInsets.all(16.0),
-                        child: Text('Events Content'),
-                      ),
-                    if (selectedIndex == 2)
-                      Container(
-                        padding: EdgeInsets.all(16.0),
-                        child: Text('Experts Content'),
-                      ),
                   ],
                 );
               },

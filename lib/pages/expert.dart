@@ -1,7 +1,7 @@
+import 'dart:math';
 import 'package:dfree_hub/pages/community.dart';
-import 'package:dfree_hub/pages/event.dart';
 import 'package:flutter/material.dart';
-// Import the expert.dart file
+import 'event.dart';
 
 class Expert extends StatelessWidget {
   const Expert({super.key});
@@ -30,7 +30,7 @@ class Expert extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Expert()),
+                  MaterialPageRoute(builder: (context) => Event()),
                 );
               },
               child: Container(
@@ -52,10 +52,9 @@ class Expert extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            SizedBox(height: 20), // Add some spacing
             Padding(
-              padding: const EdgeInsets.only(
-                  bottom: 20, left: 30.0, right: 30.0), // Add padding
+              padding:
+                  const EdgeInsets.only(bottom: 20, left: 30.0, right: 30.0),
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Container(
@@ -77,8 +76,7 @@ class Expert extends StatelessWidget {
                         child: TextField(
                           decoration: InputDecoration(
                             hintText: 'Search...',
-                            hintStyle:
-                                TextStyle(height: 0.5), // Increased height
+                            hintStyle: TextStyle(height: 0.5),
                             border: InputBorder.none,
                             contentPadding:
                                 EdgeInsets.only(left: 12, bottom: 8),
@@ -87,7 +85,7 @@ class Expert extends StatelessWidget {
                       ),
                       Spacer(),
                       Padding(
-                        padding: const EdgeInsets.only(left: 30),
+                        padding: const EdgeInsets.only(right: 12),
                         child: Container(
                           width: 30,
                           height: 30,
@@ -104,94 +102,226 @@ class Expert extends StatelessWidget {
                 ),
               ),
             ),
+            SizedBox(height: 10),
             StatefulBuilder(
               builder: (BuildContext context, StateSetter setState) {
-                int selectedIndex = 2;
+                int selectedIndex = 2; // Set to 2 for Expert tab
 
-                return Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: List.generate(3, (index) {
-                        return GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              selectedIndex = index;
-                            });
-                            if (index == 0) {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Community()),
-                              );
-                            } else if (index == 1) {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Event()),
-                              );
-                            }
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.all(6.0),
-                            child: Container(
-                              width: 105, // Increased width
-                              height: 35, // Increased height
-                              decoration: ShapeDecoration(
-                                color: selectedIndex == index
-                                    ? Colors.white
-                                    : Color(0xFFD9D9D9),
-                                shape: RoundedRectangleBorder(
-                                  side: BorderSide(
-                                      width: 1,
-                                      color: selectedIndex == index
-                                          ? Color(0xFFF6C3C0)
-                                          : Colors.grey),
-                                  borderRadius: BorderRadius.circular(25),
-                                ),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  index == 0
-                                      ? 'News'
-                                      : index == 1
-                                          ? 'Events'
-                                          : 'Experts',
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.bold,
-                                    color: selectedIndex == index
-                                        ? Colors.black
-                                        : Colors.black,
-                                  ),
-                                ),
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: List.generate(3, (index) {
+                    return GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          selectedIndex = index;
+                        });
+                        if (index == 0) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Community()),
+                          );
+                        } else if (index == 1) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => Event()),
+                          );
+                        }
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(6.0),
+                        child: Container(
+                          width: 105,
+                          height: 35,
+                          decoration: ShapeDecoration(
+                            color: selectedIndex == index
+                                ? Colors.white
+                                : Color(0xFFD9D9D9),
+                            shape: RoundedRectangleBorder(
+                              side: BorderSide(
+                                  width: 1,
+                                  color: selectedIndex == index
+                                      ? Color(0xFFF6C3C0)
+                                      : Colors.grey),
+                              borderRadius: BorderRadius.circular(25),
+                            ),
+                          ),
+                          child: Center(
+                            child: Text(
+                              index == 0
+                                  ? 'News'
+                                  : index == 1
+                                      ? 'Events'
+                                      : 'Experts',
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
                               ),
                             ),
                           ),
-                        );
-                      }),
-                    ),
-                    if (selectedIndex == 0)
-                      Container(
-                        padding: EdgeInsets.all(16.0),
-                        child: Text('News Content'),
+                        ),
                       ),
-                    if (selectedIndex == 1)
-                      Container(
-                        padding: EdgeInsets.all(16.0),
-                        child: Text('Events Content'),
-                      ),
-                    if (selectedIndex == 2)
-                      Container(
-                        padding: EdgeInsets.all(16.0),
-                        child: Text('Experts Content'),
-                      ),
-                  ],
+                    );
+                  }),
                 );
               },
             ),
+
+            // Question Card
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Container(
+                padding: EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  color: Colors.grey[100],
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Struggling with addiction recovery?\nNeed guidance to take the first step?',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(height: 8),
+                    Text(
+                      'Get professional advice and support to overcome addiction and start your recovery journey today!',
+                      style: TextStyle(
+                        color: Colors.grey[600],
+                        fontSize: 14,
+                      ),
+                    ),
+                    SizedBox(height: 16),
+                    Center(
+                      child: ElevatedButton(
+                        onPressed: () {},
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.white,
+                          foregroundColor: Colors.black,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 24, vertical: 12),
+                        ),
+                        child: Text('Ask a Question'),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+
+            // Recent Discussions Header
+            Padding(
+              padding: const EdgeInsets.only(left: 16.0, bottom: 8.0),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'Recent Discussion',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+
+            // Discussion Posts
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    _buildDiscussionPost(
+                      'Elena Marie',
+                      'What are some practical steps to overcome addiction? I\'m ready to make a change but need advice on how to get started and stay committed.',
+                      '7',
+                      '17',
+                      '14',
+                    ),
+                    _buildDiscussionPost(
+                      'John Wick',
+                      'How do you stay motivated during addiction recovery? I\'m looking for tips and advice to keep pushing forward on tough days.',
+                      '36',
+                      '26',
+                      '23',
+                    ),
+                    _buildDiscussionPost(
+                      'Alexander',
+                      'How do you stay motivated during addiction recovery? I\'m looking for tips and advice to keep pushing forward on tough days.',
+                      '46',
+                      '28',
+                      '32',
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildDiscussionPost(String name, String content, String likes,
+      String comments, String shares) {
+    final profilePics = [
+      'lib/assets/alexander.png',
+      'lib/assets/john.png',
+      'lib/assets/elena.png'
+    ];
+    final random = Random();
+    final profilePic = profilePics[random.nextInt(profilePics.length)];
+
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      padding: EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.grey[100],
+        borderRadius: BorderRadius.circular(15),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              CircleAvatar(
+                backgroundImage: AssetImage(profilePic),
+                radius: 20,
+              ),
+              SizedBox(width: 8),
+              Text(
+                name,
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
+          SizedBox(height: 12),
+          Text(
+            content,
+            style: TextStyle(fontSize: 14),
+          ),
+          SizedBox(height: 12),
+          Row(
+            children: [
+              Icon(Icons.thumb_up_outlined, size: 16, color: Colors.grey),
+              SizedBox(width: 4),
+              Text(likes, style: TextStyle(color: Colors.grey)),
+              SizedBox(width: 16),
+              Icon(Icons.chat_bubble_outline, size: 16, color: Colors.grey),
+              SizedBox(width: 4),
+              Text(comments, style: TextStyle(color: Colors.grey)),
+              SizedBox(width: 16),
+              Icon(Icons.share_outlined, size: 16, color: Colors.grey),
+              SizedBox(width: 4),
+              Text(shares, style: TextStyle(color: Colors.grey)),
+            ],
+          ),
+        ],
       ),
     );
   }

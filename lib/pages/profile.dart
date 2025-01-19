@@ -52,10 +52,10 @@ class _ProfileState extends State<Profile> {
                     Stack(
                       children: [
                         CircleAvatar(
-                          radius: 40,
+                          radius: 50,
                           backgroundColor: Colors.grey[300],
                           child: Icon(Icons.person,
-                              size: 40, color: Colors.grey[600]),
+                              size: 70, color: Colors.grey[600]),
                         ),
                         Positioned(
                           right: 0,
@@ -70,8 +70,8 @@ class _ProfileState extends State<Profile> {
                               );
                             },
                             child: Container(
-                              width: 24,
-                              height: 24,
+                              width: 20,
+                              height: 20,
                               decoration: const BoxDecoration(
                                 shape: BoxShape.circle,
                               ),

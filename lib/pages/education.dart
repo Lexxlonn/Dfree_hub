@@ -21,7 +21,7 @@ class _EducationState extends State<Education> {
   Future<void> _fetchVideos() async {
     final response = await Supabase.instance.client.from('education').select();
     setState(() {
-      _videos = response as List<Map<String, dynamic>>;
+      _videos = response;
     });
   }
 
