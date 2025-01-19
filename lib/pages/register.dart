@@ -64,7 +64,10 @@ class _RegisterPageState extends State<RegisterPage> {
     if (response == null) {
       // Handle null response
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('User registered successfully!',)),
+        SnackBar(
+            content: Text(
+          'User registered successfully!',
+        )),
       );
       Navigator.pushNamed(context, '/bottomnav');
     } else if (response.error != null) {
@@ -315,10 +318,13 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 child: const Text('Submit'),
               ),
+              
             ],
           ),
         ),
       ),
     );
+    
   }
+  
 }
