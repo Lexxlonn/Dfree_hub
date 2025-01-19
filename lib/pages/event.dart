@@ -1,5 +1,4 @@
 import 'package:dfree_hub/pages/community.dart';
-import 'package:dfree_hub/pages/event.dart';
 import 'package:flutter/material.dart';
 import 'expert.dart'; // Import the expert.dart file
 

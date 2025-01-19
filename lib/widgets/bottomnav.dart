@@ -1,5 +1,3 @@
-import 'package:dfree_hub/pages/event.dart';
-import 'package:dfree_hub/pages/expert.dart';
 import 'package:flutter/material.dart';
 import 'package:dfree_hub/pages/education.dart';
 import 'package:dfree_hub/pages/rehab.dart';
