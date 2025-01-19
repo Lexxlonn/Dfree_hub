@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:dfree_hub/pages/community.dart';
+import 'package:dfree_hub/pages/profile.dart';
 import 'package:flutter/material.dart';
 import 'event.dart';
 
@@ -30,7 +31,7 @@ class Expert extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Event()),
+                  MaterialPageRoute(builder: (context) => Profile()),
                 );
               },
               child: Container(

@@ -1,4 +1,5 @@
 import 'package:dfree_hub/pages/event.dart' as event_page;
+import 'package:dfree_hub/pages/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:dfree_hub/pages/expert.dart' as expert_page;
 
@@ -29,7 +30,7 @@ class Community extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Community()),
+                  MaterialPageRoute(builder: (context) => Profile()),
                 );
               },
               child: Container(
@@ -101,12 +102,14 @@ class Community extends StatelessWidget {
                       if (index == 1) {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => event_page.Event()),
+                          MaterialPageRoute(
+                              builder: (context) => event_page.Event()),
                         );
                       } else if (index == 2) {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => expert_page.Expert()),
+                          MaterialPageRoute(
+                              builder: (context) => expert_page.Expert()),
                         );
                       }
                     },
@@ -116,18 +119,26 @@ class Community extends StatelessWidget {
                         width: 105,
                         height: 35,
                         decoration: ShapeDecoration(
-                          color: selectedIndex == index ? Colors.white : Color(0xFFD9D9D9),
+                          color: selectedIndex == index
+                              ? Colors.white
+                              : Color(0xFFD9D9D9),
                           shape: RoundedRectangleBorder(
                             side: BorderSide(
                               width: 1,
-                              color: selectedIndex == index ? Color(0xFFF6C3C0) : Colors.grey,
+                              color: selectedIndex == index
+                                  ? Color(0xFFF6C3C0)
+                                  : Colors.grey,
                             ),
                             borderRadius: BorderRadius.circular(25),
                           ),
                         ),
                         child: Center(
                           child: Text(
-                            index == 0 ? 'News' : index == 1 ? 'Events' : 'Experts',
+                            index == 0
+                                ? 'News'
+                                : index == 1
+                                    ? 'Events'
+                                    : 'Experts',
                             style: TextStyle(
                               fontSize: 12,
                               fontWeight: FontWeight.bold,
@@ -164,7 +175,8 @@ class Community extends StatelessWidget {
                         top: 10,
                         left: 10,
                         child: Container(
-                          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                          padding:
+                              EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                           decoration: BoxDecoration(
                             color: Colors.black.withOpacity(0.6),
                             borderRadius: BorderRadius.circular(12),
@@ -205,12 +217,23 @@ class Community extends StatelessWidget {
                 NewsListItem(
                   title: 'Local community celebration draws record crowds',
                   timestamp: '15 minutes ago',
-                  imageAsset: 'lib/assets/news1.jpg',
+                  imageAsset: 'lib/assets/news1.jpeg',
                 ),
                 NewsListItem(
                   title: 'New community center opens its doors',
                   timestamp: '1 hour ago',
                   imageAsset: 'lib/assets/news2.jpg',
+                ),
+                NewsListItem(
+                  title: '"Community Garden Project Transforms Local Park"',
+                  timestamp: '15 minutes ago',
+                  imageAsset: 'lib/assets/news1.jpeg',
+                ),
+                NewsListItem(
+                  title:
+                      '"New Wellness Center Opens with Free Public Programs"',
+                  timestamp: '1 hour ago',
+                  imageAsset: 'lib/assets/featured-news.jpg',
                 ),
                 // Add more news items as needed
               ],

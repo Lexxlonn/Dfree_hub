@@ -30,7 +30,7 @@ class _BottomNavState extends State<BottomNav> {
               title: Center(
                 child: Container(
                   margin:
-                      EdgeInsets.only(right: 16, top: 20, bottom: 5, left: 10),
+                      EdgeInsets.only(right: 16, top: 20, bottom: 5, left: 70),
                   width: 110,
                   height: 85,
                   decoration: BoxDecoration(
