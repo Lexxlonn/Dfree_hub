@@ -1,3 +1,5 @@
+import 'package:dfree_hub/pages/event.dart';
+import 'package:dfree_hub/pages/expert.dart';
 import 'package:flutter/material.dart';
 import 'package:dfree_hub/pages/education.dart';
 import 'package:dfree_hub/pages/rehab.dart';
@@ -19,7 +21,6 @@ class _BottomNavState extends State<BottomNav> {
     Rehab(),
     Education(),
     Community(),
-    Profile()
   ];
 
   @override
@@ -30,7 +31,7 @@ class _BottomNavState extends State<BottomNav> {
         child: AppBar(
           title: Center(
             child: Container(
-              margin: EdgeInsets.only(right: 0, top: 20, bottom: 5),
+              margin: EdgeInsets.only(right: 0, top: 20, bottom: 5, left: 50),
               width: 110,
               height: 85,
               decoration: BoxDecoration(
