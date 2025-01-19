@@ -67,7 +67,7 @@ class Expert extends StatelessWidget {
             ),
             StatefulBuilder(
               builder: (BuildContext context, StateSetter setState) {
-                int selectedIndex = 0;
+                int selectedIndex = 2;
 
                 return Column(
                   children: [
@@ -114,7 +114,7 @@ class Expert extends StatelessWidget {
                               child: Center(
                                 child: Text(
                                   index == 0
-                                      ? 'Community'
+                                      ? 'News'
                                       : index == 1
                                           ? 'Events'
                                           : 'Experts',
@@ -135,7 +135,7 @@ class Expert extends StatelessWidget {
                     if (selectedIndex == 0)
                       Container(
                         padding: EdgeInsets.all(16.0),
-                        child: Text('Community Content'),
+                        child: Text('News Content'),
                       ),
                     if (selectedIndex == 1)
                       Container(
